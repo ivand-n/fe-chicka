@@ -5,12 +5,15 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Sidebar from "@/app/components/Sidebar";
 import axios from "axios";
 
+const JENIS_DOC_OPTIONS = ["Cobb", "Ross", "Hubbard", "Arbor Acres"];
+
 type FormData = {
   no_lantai: number | null;
   jenis_doc: string;
   populasi: number | null;
   tgl_masuk: string;
   kandang_id: number | null;
+  bb_ekor: number | null;
 };
 
 function FormLantaiContent() {
@@ -35,6 +38,7 @@ function FormLantaiContent() {
     populasi: null,
     tgl_masuk: "",
     kandang_id: id_kandang ? parseInt(id_kandang, 10) : null,
+    bb_ekor: null,
   });
 
   const [loading, setLoading] = useState(false);
@@ -110,6 +114,7 @@ function FormLantaiContent() {
             populasi: data.populasi ?? null,
             tgl_masuk: data.tgl_masuk ? data.tgl_masuk.split("T")[0] : "",
             kandang_id: parseInt(id_kandang, 10),
+            bb_ekor: data.bb_ekor ?? null,
           });
           setInitialLoading(false);
         })
@@ -142,17 +147,23 @@ function FormLantaiContent() {
             populasi: data.populasi ?? null,
             tgl_masuk: data.tgl_masuk ? data.tgl_masuk.split("T")[0] : "",
             kandang_id: parseInt(id_kandang!, 10),
+            bb_ekor: data.bb_ekor ?? null,
           });
         })
         .catch(() => alert("Gagal memuat data lantai."));
     }
   }, [selectedLantai, ubah, hapus, id_kandang]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [id]:
+        id === "bb_ekor"
+        ? value === ""
+          ? null
+          : parseFloat(value)
+         :
         id === "no_lantai" || id === "populasi" || id === "kandang_id"
           ? value === ""
             ? null
@@ -200,10 +211,18 @@ function FormLantaiContent() {
         router.push(`/monitoring/kandang?success=editlantai`);
       } else {
         // Tambah baru
+        const createPayload = {
+          no_lantai: formData.no_lantai,
+          jenis_doc: formData.jenis_doc,
+          populasi: formData.populasi,
+          tgl_masuk: formData.tgl_masuk,
+          bb_ekor: formData.bb_ekor === null ? null : Number(formData.bb_ekor),
+        };
+
         await axios.post(
           `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/lantai/${id_kandang}`,
-          formData,
-          { headers: { Authorization: `Bearer ${token}` } }
+          createPayload,
+          { headers: { Authorization: `Bearer ${token}` } },
         );
         router.push(`/monitoring/kandang?success=tambahlantai`);
       }
@@ -260,10 +279,10 @@ function FormLantaiContent() {
               {hapus
                 ? "Hapus Lantai"
                 : ubah
-                ? "Ubah Lantai"
-                : id_lantai
-                ? "Ubah Lantai"
-                : "Tambah Lantai"}
+                  ? "Ubah Lantai"
+                  : id_lantai
+                    ? "Ubah Lantai"
+                    : "Tambah Lantai"}
             </h1>
             <p className="text-sm text-gray-500 mt-1">
               Kandang ID: <span className="font-medium">{id_kandang}</span>
@@ -325,14 +344,22 @@ function FormLantaiContent() {
                 <label className="block text-xs font-medium text-gray-600 mb-1">
                   Jenis DOC
                 </label>
-                <input
+                <select
                   id="jenis_doc"
-                  type="text"
                   value={formData.jenis_doc}
                   onChange={handleInputChange}
                   className="w-full rounded border px-3 py-2 text-sm text-black"
                   required
-                />
+                >
+                  <option value="" disabled>
+                    -- Pilih Jenis DOC --
+                  </option>
+                  {JENIS_DOC_OPTIONS.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div>
@@ -364,6 +391,22 @@ function FormLantaiContent() {
                 />
               </div>
 
+              <div>
+                <label className="block text-xs font-medium text-gray-600 mb-1">
+                  BB Monitoring Awal
+                </label>
+                <input
+                  id="bb_ekor"
+                  type="number"
+                  step="0.01"
+                  value={formData.bb_ekor ?? ""}
+                  onChange={handleInputChange}
+                  className="w-full rounded border px-3 py-2 text-sm text-black"
+                  required
+                  min={0}
+                />
+              </div>
+
               <div className="pt-2 flex gap-3">
                 <button
                   type="submit"
@@ -376,8 +419,8 @@ function FormLantaiContent() {
                   {loading
                     ? "Menyimpan..."
                     : ubah || id_lantai
-                    ? "Update Lantai"
-                    : "Simpan Lantai"}
+                      ? "Update Lantai"
+                      : "Simpan Lantai"}
                 </button>
                 <button
                   type="button"

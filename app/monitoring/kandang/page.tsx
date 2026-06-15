@@ -240,7 +240,15 @@ function KandangContent() {
               ? "Kandang berhasil diubah."
               : alertType === "hapuskandang"
               ? "Kandang berhasil dihapus."
-              : "Kandang berhasil ditambahkan."}
+              : alertType === "tambahkandang"
+              ? "Kandang berhasil ditambahkan."
+              : alertType === "tambahlantai"
+              ? "Lantai berhasil ditambahkan."
+              : alertType === "editlantai"
+              ? "Lantai berhasil diubah."
+              : alertType === "hapuslantai"
+              ? "Lantai berhasil dihapus."
+              : "Lantai berhasil dihapus."}
           </div>
         )}
 
@@ -366,12 +374,6 @@ function KandangContent() {
 
                   {/* Aksi kandang */}
                   <div className="mt-4 flex flex-wrap gap-2">
-                    <Link
-                      href={`/monitoring/inisiasi?edit=${k.id}`}
-                      className="flex-1 min-w-[110px] text-center px-3 py-2 rounded bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-medium"
-                    >
-                      Ubah Kandang
-                    </Link>
                     <button
                       onClick={() => {
                         if (confirm("Hapus kandang ini?")) {

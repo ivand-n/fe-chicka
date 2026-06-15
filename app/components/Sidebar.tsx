@@ -177,7 +177,7 @@ export default function Sidebar() {
       <aside
         className={`
           fixed top-0 left-0 z-40 h-screen
-          w-64 bg-white border-r border-gray-200
+          w-52 bg-white border-r border-gray-200
           transition-transform duration-300 ease-in-out
           lg:translate-x-0
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
@@ -429,7 +429,7 @@ export default function Sidebar() {
       </aside>
 
       {/* Spacer untuk desktop */}
-      <div className="hidden lg:block lg:w-64 shrink-0" />
+      <div className="hidden lg:block lg:w-52 shrink-0" />
     </>
   );
 }

@@ -37,7 +37,7 @@ function FormPenjaranganContent() {
     no: null,
     nama: "",
     ekor: null,
-    bw: bbekor ? parseFloat(bbekor) / 1000 : null,
+    bw: null,
     umur: umur ? parseInt(umur, 10) : null,
     id_lantai: id_lantai ? parseInt(id_lantai, 10) : null,
   });
@@ -285,7 +285,7 @@ function FormPenjaranganContent() {
                 htmlFor="bw"
                 className="block text-xs font-medium text-gray-600 mb-1"
               >
-                BW (Body Weight) - Kg
+                Berat Ekor - Gr
               </label>
               <input
                 type="number"
@@ -293,13 +293,9 @@ function FormPenjaranganContent() {
                 id="bw"
                 value={formData.bw ?? ""}
                 onChange={handleInputChange}
-                className="w-full rounded border px-3 py-2 text-sm text-black bg-gray-50 cursor-not-allowed"
-                disabled
+                className="w-full rounded border px-3 py-2 text-sm text-black bg-gray-50"
                 placeholder="Otomatis dari BB/Ekor monitoring"
               />
-              <p className="text-[10px] text-gray-500 mt-1">
-                Nilai diambil dari BB/Ekor (gram) ÷ 1000
-              </p>
             </div>
 
             <div>

@@ -110,9 +110,9 @@ export default function InisiasiPage() {
 
     if (id === "tingkat") {
       let tingkat = parseInt(value, 10);
-      if (tingkat > 5) {
-        alert("Maksimal tingkat adalah 5!");
-        tingkat = 5;
+      if (tingkat > 3) {
+        alert("Maksimal tingkat adalah 3!");
+        tingkat = 3;
       } else if (tingkat < 1) {
         tingkat = 1;
       }
@@ -171,6 +171,13 @@ export default function InisiasiPage() {
     setFormData((prev) => {
       const lantai = [...prev.lantai];
       lantai[index] = { ...lantai[index], [id]: value };
+
+      if (id === "populasi") {
+        lantai[index] = { ...lantai[index], [id]: parseInt(value, 10) || null };
+      } else {
+        lantai[index] = { ...lantai[index], [id]: value };
+      }
+
       return { ...prev, lantai };
     });
   };
@@ -329,7 +336,7 @@ export default function InisiasiPage() {
 
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Tingkat (1-5) <span className="text-red-500">*</span>
+                Tingkat (1-3) <span className="text-red-500">*</span>
               </label>
               <input
                 type="number"
@@ -474,7 +481,7 @@ export default function InisiasiPage() {
                   {lantai.monit.map((monit, monitIndex) => (
                     <div key={monitIndex} className="mb-3">
                       <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Berat / Ekor (kg) <span className="text-red-500">*</span>
+                        Berat / Ekor (Gr) <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="number"
