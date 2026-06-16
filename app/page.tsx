@@ -93,7 +93,7 @@ export default function Home() {
         </section>
 
         {/* Orange Section */}
-        <div className="w-full h-32 sm:h-48 md:h-80 bg-orange-400 rounded-lg mt-16 sm:mt-24 md:mt-32"></div>
+        <div className="w-full h-16 sm:h-24 md:h-80 bg-orange-400 rounded-lg mt-4 sm:mt-8 md:mt-32"></div>
 
         {/* Benefits Section */}
         <div className="mt-20 sm:mt-32 md:mt-40">
