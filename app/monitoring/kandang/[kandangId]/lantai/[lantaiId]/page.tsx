@@ -558,7 +558,7 @@ function LantaiMonitoringPageContent() {
                       Umur
                     </th>
                     <th className="px-3 py-2 border-b font-medium text-left">
-                      Tgl
+                      Tanggal
                     </th>
                     <th className="px-3 py-2 border-b font-medium text-center">
                       Mati
@@ -582,10 +582,10 @@ function LantaiMonitoringPageContent() {
                       Cum Pakan (Kg)
                     </th>
                     <th className="px-3 py-2 border-b font-medium text-right">
-                      gr/Ekor/Hari
+                      Feed Intake (gr/Ekor/Hari)
                     </th>
                     <th className="px-3 py-2 border-b font-medium text-right">
-                      Cum Kons Pakan
+                      Feed Intake Kumulatif
                     </th>
                     <th className="px-3 py-2 border-b font-medium text-right">
                       Tonase (Kg)
@@ -670,7 +670,7 @@ function LantaiMonitoringPageContent() {
                         <td className="px-3 py-2 text-right font-semibold">
                           {num(m.fcr).toFixed(2)}
                         </td>
-                        <td className="px-3 py-2 text-right font-semibold text-orange-600">
+                        <td className="px-3 py-2 text-right font-semibold">
                           {num(m.ip).toFixed(0)}
                         </td>
                         <td className="px-3 py-2 text-right">

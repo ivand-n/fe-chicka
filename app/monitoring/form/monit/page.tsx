@@ -219,8 +219,7 @@ function FormMonitoringContent() {
               {id_monit ? "Ubah Monitoring" : "Tambah Monitoring"}
             </h1>
             <p className="text-sm text-gray-500">
-              ID Lantai: <span className="font-medium">{id_lantai}</span> •
-              ID Kandang: <span className="font-medium">{id_kandang}</span>
+              Umur : <span className="font-medium">{formData.umur ?? "-"}</span> 
             </p>
           </div>
           <div className="text-right">
