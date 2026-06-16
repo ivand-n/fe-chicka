@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -9,15 +9,69 @@ const MapClient = dynamic(() => import("./components/MapClient"), {
   ssr: false,
 });
 
+// Type definitions
+interface BenefitCardProps {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface ComparisonRow {
+  fitur: string;
+  chickA: boolean;
+  chickAPro: boolean;
+}
+
 export default function Home() {
+  const comparisonData: ComparisonRow[] = [
+    {
+      fitur: "Daily monitoring",
+      chickA: true,
+      chickAPro: true,
+    },
+    {
+      fitur: "Otomatisasi Data",
+      chickA: true,
+      chickAPro: true,
+    },
+    {
+      fitur: "Kalkulasi hingga panen",
+      chickA: true,
+      chickAPro: true,
+    },
+    {
+      fitur: "Export data ke CSV",
+      chickA: true,
+      chickAPro: true,
+    },
+    {
+      fitur: "Integrasi Sapronak",
+      chickA: true,
+      chickAPro: true,
+    },
+    {
+      fitur: "Monitoring kandang via website",
+      chickA: false,
+      chickAPro: true,
+    },
+    {
+      fitur: "Konsultasikan ayam dengan dokter",
+      chickA: false,
+      chickAPro: true,
+    },
+  ];
+
   return (
     <div className="w-full min-h-screen bg-white">
       <Navbar />
-      <main className="p-8" id="home">
-        <div className="mt-10 mb-10 text-6xl text-black text-center">
+      <main className="p-4 sm:p-6 md:p-8" id="home">
+        {/* Hero Title */}
+        <div className="mt-6 sm:mt-10 mb-6 sm:mb-10 text-3xl sm:text-5xl md:text-6xl text-black text-center font-bold">
           Solusi Kemudahan Beternak.
         </div>
-        <section className="relative mx-auto w-3/5 h-[60vh] z-10 -mb-80 border-2 border-black rounded-lg overflow-hidden">
+
+        {/* Hero Image */}
+        <section className="relative mx-auto w-full md:w-3/5 h-64 sm:h-96 md:h-[60vh] z-10 -mb-12 sm:-mb-20 md:-mb-80 border-2 border-black rounded-lg overflow-hidden">
           <Image
             src="/1.jpeg"
             alt="Hero"
@@ -27,55 +81,55 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-black/30" />
           <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
-            <p className="mt-4 text-white max-w-2xl text-center">
+            <p className="mt-4 text-white text-sm sm:text-base md:text-lg max-w-2xl text-center">
               Platform untuk memudahkan manajemen ternak dan monitoring.
             </p>
-            <div className="mt-6">
-              <button className="px-6 py-3 bg-orange-400 text-white rounded-lg shadow-md hover:bg-orange-300">
+            <div className="mt-4 sm:mt-6">
+              <button className="px-4 sm:px-6 py-2 sm:py-3 bg-orange-400 text-white rounded-lg shadow-md hover:bg-orange-300 text-sm sm:text-base font-medium transition">
                 Mulai Sekarang
               </button>
             </div>
           </div>
         </section>
-        <div className="w-full h-80 bg-orange-400 rounded-lg"></div>
 
-        {/* benefit */}
-        <div
-          id="produk"
-          className="text-black border-t border-gray-300 text-xl hover:underline font-bold mt-40"
-        >
-          Keunggulan
-        </div>
-        <div className="mt-10 flex flex-cols-3 gap-40 justify-center items-center">
-          <div className="w-60 h-36 bg-white flex flex-col items-center p-4 rounded-lg">
-            <img src="/easy.png" alt="" height={50} width={50} />
-            <div className="text-black text-md font-bold mt-2">Easy</div>
-            <div className="text-black text-sm mt-1">
-              Antarmuka yang user-friendly untuk semua kalangan peternak.
-            </div>
-          </div>
-          <div className="w-60 h-36 bg-white flex flex-col items-center p-4 rounded-lg">
-            <img src="/accurate.png" alt="" height={50} width={50} />
-            <div className="text-black text-md font-bold mt-2">Accurate</div>
-            <div className="text-black text-sm mt-1">
-              Data akurat untuk pengambilan keputusan yang tepat.
-            </div>
-          </div>
-          <div className="w-60 h-36 bg-white flex flex-col items-center p-4 rounded-lg">
-            <img src="/visual.png" alt="" height={50} width={50} />
-            <div className="text-black text-md font-bold mt-2">Visual</div>
-            <div className="text-black text-sm mt-1">
-              Grafik dan laporan visual untuk pemantauan mudah.
-            </div>
+        {/* Orange Section */}
+        <div className="w-full h-32 sm:h-48 md:h-80 bg-orange-400 rounded-lg mt-16 sm:mt-24 md:mt-32"></div>
+
+        {/* Benefits Section */}
+        <div className="mt-20 sm:mt-32 md:mt-40">
+          <h2
+            id="produk"
+            className="text-black border-t border-gray-300 text-lg sm:text-xl md:text-2xl hover:underline font-bold pt-4"
+          >
+            Keunggulan
+          </h2>
+          <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-10 justify-center items-start">
+            <BenefitCard
+              icon="/easy.png"
+              title="Easy"
+              description="Antarmuka yang user-friendly untuk semua kalangan peternak."
+            />
+            <BenefitCard
+              icon="/accurate.png"
+              title="Accurate"
+              description="Data akurat untuk pengambilan keputusan yang tepat."
+            />
+            <BenefitCard
+              icon="/visual.png"
+              title="Visual"
+              description="Grafik dan laporan visual untuk pemantauan mudah."
+            />
           </div>
         </div>
 
-        {/* Tentang kami */}
-        <div id="tentang-kami" className="mt-40 w-full">
-          <div className="mx-auto p-4 h-60 bg-orange-400 rounded-xl">
-            <div className="flex flex-col items-center justify-center h-full">
-              <h1 className="text-white text-xl font-bold">Tentang Kami</h1>
-              <p className="text-white text-md text-justify mt-2 max-w-4xl">
+        {/* About Section */}
+        <div id="tentang-kami" className="mt-20 sm:mt-32 md:mt-40 w-full">
+          <div className="mx-auto p-4 sm:p-6 md:p-8 min-h-48 sm:min-h-60 md:h-60 bg-orange-400 rounded-xl flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="text-white text-lg sm:text-xl md:text-2xl font-bold">
+                Tentang Kami
+              </h1>
+              <p className="text-white text-xs sm:text-sm md:text-base text-justify mt-4 max-w-4xl">
                 Chick-A adalah platform inovatif yang dirancang untuk memudahkan
                 peternak dalam mengelola dan memantau kesehatan ternak mereka.
                 Dengan antarmuka yang user-friendly, data yang akurat, dan
@@ -83,96 +137,59 @@ export default function Home() {
                 membuat keputusan yang tepat untuk meningkatkan produktivitas
                 dan kesejahteraan ternak mereka. Berawal dari penelitian bersama
                 pascasarjana Peternakan, Teknik Elektro, dan Informatika
-                Universitas Jenderal Soedirman. Lahirlah inovasi yang terus
-                menerus dikembangkan demi kemajuan peternakan di Indonesia.
+                Universitas Jenderal Soedirman.
               </p>
             </div>
           </div>
         </div>
 
-        {/* perbandingan produk */}
-        <div className="mt-10 bg-white rounded-xl p-6">
-          <h2 className="text-2xl font-bold text-black text-center mb-6">
+        {/* Comparison Table */}
+        <div className="mt-10 sm:mt-16 md:mt-20 bg-white rounded-xl p-4 sm:p-6 md:p-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black text-center mb-6 sm:mb-8">
             Perbandingan Chick-A dan Chick-A PRO
           </h2>
           <div className="overflow-x-auto">
-            <table className="table-auto border-collapse w-full text-left text-black">
+            <table className="table-auto border-collapse w-full text-left text-black text-xs sm:text-sm md:text-base">
               <thead>
-                <tr className="bg-white">
-                  <th className="border border-white px-4 py-2">Fitur</th>
-                  <th className="border border-white px-4 py-2 text-center">
+                <tr className="bg-gray-100">
+                  <th className="border border-gray-300 px-2 sm:px-4 py-2 sm:py-3">
+                    Fitur
+                  </th>
+                  <th className="border border-gray-300 px-2 sm:px-4 py-2 sm:py-3 text-center">
                     Chick-A
                   </th>
-                  <th className="border border-white px-4 py-2 text-center">
+                  <th className="border border-gray-300 px-2 sm:px-4 py-2 sm:py-3 text-center">
                     Chick-A PRO
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {[
-                  {
-                    no: 1,
-                    fitur: "Daily monitoring",
-                    chickA: true,
-                    chickAPro: true,
-                  },
-                  {
-                    no: 2,
-                    fitur: "Otomatisasi Data",
-                    chickA: true,
-                    chickAPro: true,
-                  },
-                  {
-                    no: 3,
-                    fitur: "Kalkulasi hingga panen",
-                    chickA: true,
-                    chickAPro: true,
-                  },
-                  {
-                    no: 4,
-                    fitur: "Export data ke CSV",
-                    chickA: true,
-                    chickAPro: true,
-                  },
-                  {
-                    no: 5,
-                    fitur: "Integrasi Sapronak",
-                    chickA: true,
-                    chickAPro: true,
-                  },
-                  {
-                    no: 6,
-                    fitur: "Monitoring kandang via website",
-                    chickA: false,
-                    chickAPro: true,
-                  },
-                  {
-                    no: 7,
-                    fitur: "Konsultasikan ayam dengan dokter",
-                    chickA: false,
-                    chickAPro: true,
-                  },
-                ].map((row, index) => (
-                  <tr key={index} className={"bg-white hover:bg-orange-300"}>
-                    <td className=" border-white px-4 py-2">{row.fitur}</td>
-                    <td className=" border-white px-4 py-2 text-center">
+                {comparisonData.map((row, index) => (
+                  <tr
+                    key={index}
+                    className="hover:bg-orange-50 border-b border-gray-300"
+                  >
+                    <td className="px-2 sm:px-4 py-2 sm:py-3 font-medium">
+                      {row.fitur}
+                    </td>
+                    <td className="px-2 sm:px-4 py-2 sm:py-3 text-center">
                       {row.chickA ? (
-                        <span className="text-green-500 font-bold text-xl">
+                        <span className="text-green-500 font-bold text-lg sm:text-xl">
                           ✔
                         </span>
                       ) : (
-                        <span className="text-red-500 font-bold text-xl">
+                        <span className="text-red-500 font-bold text-lg sm:text-xl">
                           ✘
                         </span>
                       )}
                     </td>
-                    <td className=" border-[#b45a00] px-4 py-2 text-center">
+                    <td className="px-2 sm:px-4 py-2 sm:py-3 text-center">
                       {row.chickAPro ? (
-                        <span className="text-green-500 font-bold text-xl">
+                        <span className="text-green-500 font-bold text-lg sm:text-xl">
                           ✔
                         </span>
                       ) : (
-                        <span className="text-red-500 font-bold text-xl">
+                        <span className="text-red-500 font-bold text-lg sm:text-xl">
                           ✘
                         </span>
                       )}
@@ -182,66 +199,37 @@ export default function Home() {
               </tbody>
             </table>
           </div>
-          <div className="justify-center items-center flex">
-            <a href="https://wa.me/6281222220000" className="mt-6 w-1/2 bg-orange-400 hover:bg-orange-300 p-4 rounded-lg text-center text-white font-bold">
+          <div className="justify-center items-center flex mt-6 sm:mt-8">
+            <a
+              href="https://wa.me/6281222220000"
+              className="w-full md:w-1/2 bg-orange-400 hover:bg-orange-500 p-3 sm:p-4 rounded-lg text-center text-white font-bold text-sm sm:text-base transition"
+            >
               Hubungi kami
             </a>
           </div>
         </div>
 
-        {/* Kolaborasi */}
-        <div className="text-black text-md font-bold text-center underline mt-40">
-          Kolaborasi dengan
-        </div>
-        <div className="w-full mt-10 flex justify-center gap-8">
-          <div className="">
-            <Image
-              src="/teknik.png"
-              alt="Logo 1"
-              width={75}
-              height={75}
-              className="object-contain"
-            />
+        {/* Location Section */}
+        <div className="mt-20 sm:mt-32 md:mt-40 w-full">
+          <div className="h-16 sm:h-20 md:h-24 mx-auto rounded-t-xl flex items-center justify-center bg-gray-50">
+            <h1 className="text-black text-base sm:text-lg md:text-xl font-bold">
+              Lokasi Chick-A
+            </h1>
           </div>
-          <div className="">
-            <Image
-              src="/fapet.png"
-              alt="Logo 2"
-              width={150}
-              height={75}
-              className="object-contain"
-            />
-          </div>
-        </div>
-
-        {/* location */}
-        <div className="mt-40 w-full">
-          <div className="mx-auto p-4 h-60 bg-orange-400 rounded-xl">
-            <div className="flex flex-col items-center justify-center h-full">
-              <h1 className="text-white text-xl font-bold">Inovasi Oleh</h1>
-              <h1 className="text-white text-2xl font-bold mt-2">
-                Tim Inovasi Teknologi Peternakan
-              </h1>
-              <h1 className="text-white text-xl font-bold mt-2">
-                Universitas Jenderal Soedirman
-              </h1>
-            </div>
-          </div>
-          <div className="h-24 mx-auto rounded-t-xl flex items-center justify-center">
-            <h1 className="text-black text-lg font-bold">Lokasi Chick-A</h1>
-          </div>
-          <div className="mx-auto p-4 h-[400px] rounded-xl">
-            <div className="grid grid-cols-2 gap-4 h-92">
-              <MapClient />
-              <div className="flex flex-col items-center justify-center h-full bg-white rounded-xl p-4">
-                <h1 className="text-black text-xl font-bold">
+          <div className="mx-auto p-4 rounded-xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-auto md:h-96">
+              <div className="h-64 md:h-full rounded-xl overflow-hidden shadow-md">
+                <MapClient />
+              </div>
+              <div className="flex flex-col items-center justify-center h-auto md:h-full bg-white rounded-xl p-4 sm:p-6 shadow-md">
+                <h1 className="text-black text-lg sm:text-xl md:text-2xl font-bold text-center">
                   Chick-A Farm House
                 </h1>
-                <p className="text-black text-md text-justify mt-2">
+                <p className="text-black text-xs sm:text-sm md:text-base text-justify mt-4">
                   Chick-A Farm House Fakultas Peternakan Universitas Jenderal
                   Soedirman
                 </p>
-                <p className="text-black text-md text-justify mt-2">
+                <p className="text-black text-xs sm:text-sm md:text-base text-justify mt-3">
                   Jl. Raya Jendral Sudirman No.KM 5, Karangwangkal, Kec.
                   Purwokerto Utara, Kabupaten Banyumas, Jawa Tengah 53122
                 </p>
@@ -254,4 +242,24 @@ export default function Home() {
     </div>
   );
 }
-// ...existing code...
+
+// Reusable Benefit Card Component dengan proper typing
+function BenefitCard({ icon, title, description }: BenefitCardProps) {
+  return (
+    <div className="w-full h-auto bg-white flex flex-col items-center p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition">
+      <img
+        src={icon}
+        alt={title}
+        height={40}
+        width={40}
+        className="sm:h-12 sm:w-12"
+      />
+      <div className="text-black text-base sm:text-lg font-bold mt-3">
+        {title}
+      </div>
+      <div className="text-black text-xs sm:text-sm mt-2 text-center">
+        {description}
+      </div>
+    </div>
+  );
+}
