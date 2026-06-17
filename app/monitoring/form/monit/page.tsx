@@ -36,6 +36,7 @@ function FormMonitoringContent() {
   const id_kandang = sp.get("id_kandang");
   const id_lantai = sp.get("id_lantai");
   const id_monit = sp.get("id_monit");
+  const umur = sp.get("umur");
 
   const [loading, setLoading] = useState<boolean>(false);
   const [initialLoading, setInitialLoading] = useState<boolean>(true);
@@ -146,7 +147,6 @@ function FormMonitoringContent() {
     if (
       formData.mati === null ||
       formData.culing === null ||
-      formData.konsumsi === null ||
       formData.bb_ekor === null
     ) {
       alert("Semua field harus diisi!");
@@ -219,7 +219,7 @@ function FormMonitoringContent() {
               {id_monit ? "Ubah Monitoring" : "Tambah Monitoring"}
             </h1>
             <p className="text-sm text-gray-500">
-              Umur : <span className="font-medium">{formData.umur ?? "-"}</span> 
+              Umur : <span className="font-medium">{umur ?? "-"}</span> 
             </p>
           </div>
           <div className="text-right">

@@ -315,6 +315,9 @@ function LantaiMonitoringPageContent() {
                     : "-"}
                 </span>
               </span>
+              <span>
+                Umur : {monit.length ? num(monit[monit.length - 1].umur) : "0"} hari
+              </span>
             </p>
           </div>
 
@@ -335,7 +338,7 @@ function LantaiMonitoringPageContent() {
                 <button
                   onClick={() =>
                     router.push(
-                      `/monitoring/form/monit?id_kandang=${kandang.id}&id_lantai=${lantai.id}`,
+                      `/monitoring/form/monit?id_kandang=${kandang.id}&id_lantai=${lantai.id}&umur=${(latest ? num(latest.umur) + 1 : 1)}`,
                     )
                   }
                   className="px-2 sm:px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium whitespace-nowrap"

@@ -294,7 +294,7 @@ function FormPenjaranganContent() {
                 value={formData.bw ?? ""}
                 onChange={handleInputChange}
                 className="w-full rounded border px-3 py-2 text-sm text-black bg-gray-50"
-                placeholder="Otomatis dari BB/Ekor monitoring"
+                placeholder="BB/Ekor monitoring"
               />
             </div>
 
