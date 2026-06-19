@@ -653,7 +653,7 @@ function LantaiMonitoringPageContent() {
                           {num(m.dh).toFixed(2)}
                         </td>
                         <td className="px-3 py-2 text-right">
-                          {num(m.bb_ekor).toFixed(0)}
+                          {num(m.bb_ekor).toFixed(2)}
                         </td>
                         <td className="px-3 py-2 text-right">
                           {num(m.konsumsi).toFixed(2)}
@@ -674,7 +674,7 @@ function LantaiMonitoringPageContent() {
                           {num(m.fcr).toFixed(2)}
                         </td>
                         <td className="px-3 py-2 text-right font-semibold">
-                          {num(m.ip).toFixed(0)}
+                          {num(m.ip).toFixed(2)}
                         </td>
                         <td className="px-3 py-2 text-right">
                           {num(m.ep).toFixed(2)}
