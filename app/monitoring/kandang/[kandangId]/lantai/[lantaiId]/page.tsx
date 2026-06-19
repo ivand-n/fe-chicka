@@ -316,7 +316,8 @@ function LantaiMonitoringPageContent() {
                 </span>
               </span>
               <span>
-                Umur : {monit.length ? num(monit[monit.length - 1].umur) : "0"} hari
+                Umur : {monit.length ? num(monit[monit.length - 1].umur) : "0"}{" "}
+                hari
               </span>
             </p>
           </div>
@@ -338,7 +339,7 @@ function LantaiMonitoringPageContent() {
                 <button
                   onClick={() =>
                     router.push(
-                      `/monitoring/form/monit?id_kandang=${kandang.id}&id_lantai=${lantai.id}&umur=${(latest ? num(latest.umur) + 1 : 1)}`,
+                      `/monitoring/form/monit?id_kandang=${kandang.id}&id_lantai=${lantai.id}&umur=${latest ? num(latest.umur) + 1 : 1}`,
                     )
                   }
                   className="px-2 sm:px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium whitespace-nowrap"
@@ -640,9 +641,7 @@ function LantaiMonitoringPageContent() {
                               }).format(new Date(m.date))
                             : "-"}
                         </td>
-                        <td className="px-3 py-2 text-center">
-                          {num(m.mati)}
-                        </td>
+                        <td className="px-3 py-2 text-center">{num(m.mati)}</td>
                         <td className="px-3 py-2 text-center">
                           {num(m.culing)}
                         </td>
@@ -1106,9 +1105,7 @@ function LantaiMonitoringPageContent() {
                             </p>
                             <p
                               className={`font-bold ${
-                                isAnomaly
-                                  ? "text-red-600"
-                                  : "text-green-600"
+                                isAnomaly ? "text-red-600" : "text-green-600"
                               }`}
                             >
                               {isAnomaly ? "⚠️ Anomali" : "✓ Normal"}
@@ -1129,9 +1126,7 @@ function LantaiMonitoringPageContent() {
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
                           className={`h-2 rounded-full ${
-                            isAnomaly
-                              ? "bg-red-500"
-                              : "bg-green-500"
+                            isAnomaly ? "bg-red-500" : "bg-green-500"
                           }`}
                           style={{
                             width: `${pred.score * 100}%`,
@@ -1252,7 +1247,8 @@ function LantaiMonitoringPageContent() {
                       <th className="px-2 py-1 text-left">Tgl</th>
                       <th className="px-2 py-1 text-left">Pembeli</th>
                       <th className="px-2 py-1 text-right">Ekor</th>
-                      <th className="px-2 py-1 text-right">BW</th>
+                      <th className="px-2 py-1 text-right">BB Ekor (Gr)</th>
+                      <th className="px-2 py-1 text-right">BB Total (Kg)</th>
                       <th className="px-2 py-1 text-right hidden sm:table-cell">
                         Umur
                       </th>
@@ -1285,6 +1281,9 @@ function LantaiMonitoringPageContent() {
                           </td>
                           <td className="px-2 py-1 text-right text-xs">
                             {p.bw}
+                          </td>
+                          <td className="px-2 py-1 text-right text-xs">
+                            {p.kg}
                           </td>
                           <td className="px-2 py-1 text-right text-xs hidden sm:table-cell">
                             {p.umur}
