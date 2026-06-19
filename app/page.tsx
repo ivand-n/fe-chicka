@@ -135,9 +135,7 @@ export default function Home() {
                 Dengan antarmuka yang user-friendly, data yang akurat, dan
                 laporan visual yang informatif, Chick-A membantu peternak
                 membuat keputusan yang tepat untuk meningkatkan produktivitas
-                dan kesejahteraan ternak mereka. Berawal dari penelitian bersama
-                pascasarjana Peternakan, Teknik Elektro, dan Informatika
-                Universitas Jenderal Soedirman.
+                dan kesejahteraan ternak.
               </p>
             </div>
           </div>
