@@ -304,7 +304,7 @@ function FormMonitoringContent() {
               <input
                 id="bb_ekor"
                 type="number"
-                step="0.01"
+                step="0.0001"
                 value={formData.bb_ekor ?? ""}
                 onChange={handleChange}
                 className="w-full rounded border px-3 py-2 text-sm text-black focus:ring-2 focus:ring-orange-400"
